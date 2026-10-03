@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Creative Plug Zambia</title>
+  <meta name="description" content="Plug into Creativity. Order designs from Creative Plug Zambia.">
+  <meta name="theme-color" content="#1b1f2a">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Creative Plug Zambia">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="splash"><img src="icons/logo.png" alt="Creative Plug Zambia logo"><p>Creative Plug Zambia</p></div>
+  <main id="app">
+
+    <section class="view" id="view-home">
+      <div class="hero">
+        <img class="hero-logo" src="icons/logo.png" alt="Creative Plug Zambia logo">
+        <h1>Creative Plug Zambia</h1>
+        <p class="tagline">Plug into Creativity.</p>
+        <p class="note">Posters, flyers, banners, logos, business cards and more. Choose a design, send your details and we get to work.</p>
+      </div>
+      <div class="stack">
+        <a class="btn primary" href="#order">Place an order</a>
+        <a class="btn" href="#services">Services</a>
+        <a class="btn" href="#orders">My orders</a>
+        <a class="btn" href="#contact">Contact CPZ</a>
+        <button class="btn" id="installBtn" type="button">Install app</button>
+      </div>
+      <p class="note" id="installHelp" hidden></p>
+    </section>
+
+    <section class="view" id="view-services">
+      <header class="page-head"><a class="back" href="#home">&larr; Home</a><h2>Services</h2></header>
+      <ul class="list" id="serviceList"></ul>
+    </section>
+
+    <section class="view" id="view-order">
+      <header class="page-head"><a class="back" href="#home">&larr; Home</a><h2>New order</h2></header>
+      <form id="orderForm" novalidate>
+        <label for="fName">Full name</label>
+        <input id="fName" type="text" autocomplete="name" placeholder="Your full name">
+        <p class="err" id="eName"></p>
+        <label for="fPhone">Phone number</label>
+        <input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 0971234567">
+        <p class="err" id="ePhone"></p>
+        <label for="fWhats">WhatsApp number (optional)</label>
+        <input id="fWhats" type="tel" inputmode="tel" placeholder="Leave empty if same as phone">
+        <label for="fEmail">Email (optional)</label>
+        <input id="fEmail" type="email" autocomplete="email" placeholder="you@example.com">
+        <p class="err" id="eEmail"></p>
+        <label for="fService">Select service</label>
+        <select id="fService"></select>
+        <p class="err" id="eService"></p>
+        <label for="fQty">Quantity</label>
+        <div class="qty">
+          <button type="button" id="qMinus" aria-label="Decrease quantity">&minus;</button>
+          <input id="fQty" type="number" inputmode="numeric" min="1" max="99" value="1">
+          <button type="button" id="qPlus" aria-label="Increase quantity">+</button>
+        </div>
+        <p class="err" id="eQty"></p>
+        <div class="totals">
+          <div><span>Price</span><strong id="tPrice">K0</strong></div>
+          <div><span>Total</span><strong id="tTotal">K0</strong></div>
+        </div>
+        <label for="fDate">Preferred date (optional)</label>
+        <input id="fDate" type="date">
+        <label for="fNotes">Additional instructions</label>
+        <textarea id="fNotes" rows="4" placeholder="Event name, date, colours, text to include..."></textarea>
+        <button class="btn primary" type="submit">Review order</button>
+      </form>
+      <div id="review" hidden>
+        <h3>Order summary</h3>
+        <dl class="facts" id="reviewFacts"></dl>
+        <p class="err" id="eSubmit"></p>
+        <div class="stack">
+          <button class="btn primary" id="submitBtn" type="button">Submit order</button>
+          <button class="btn" id="editBtn" type="button">Edit order</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-confirm">
+      <div class="confirm">
+        <h2>Order received</h2>
+        <p>Thank you for choosing Creative Plug Zambia. Your order has been received successfully.</p>
+        <dl class="facts">
+          <dt>Order number</dt><dd id="cNo"></dd>
+          <dt>Service</dt><dd id="cService"></dd>
+          <dt>Quantity</dt><dd id="cQty"></dd>
+          <dt>Total</dt><dd id="cTotal"></dd>
+          <dt>Status</dt><dd>PENDING</dd>
+        </dl>
+        <p>We will contact you using the information you provided.</p>
+        <p class="note">This version saves your order on this device. Send it to CPZ on WhatsApp so we see it right away.</p>
+        <div class="stack">
+          <a class="btn primary" id="cWhats" href="#" target="_blank" rel="noopener">Contact CPZ on WhatsApp</a>
+          <a class="btn" href="#home">Back to home</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-orders">
+      <header class="page-head"><a class="back" href="#home">&larr; Home</a><h2>My orders</h2></header>
+      <p class="note">Orders saved on this device. This is local history, not an online account.</p>
+      <div id="myOrders"></div>
+    </section>
+
+    <section class="view" id="view-contact">
+      <header class="page-head"><a class="back" href="#home">&larr; Home</a><h2>Contact</h2></header>
+      <div class="hero small">
+        <img class="hero-logo" src="icons/logo.png" alt="Creative Plug Zambia logo">
+        <h3>Creative Plug Zambia</h3>
+        <p class="tagline">Plug into Creativity.</p>
+      </div>
+      <dl class="facts">
+        <dt>WhatsApp / Call</dt><dd id="cPhone"></dd>
+        <dt>Email</dt><dd id="cEmail"></dd>
+      </dl>
+      <div class="stack">
+        <a class="btn primary" id="waGeneral" href="#" target="_blank" rel="noopener">WhatsApp CPZ</a>
+        <a class="btn" id="callBtn" href="#">Call CPZ</a>
+        <a class="btn" id="mailBtn" href="#">Email CPZ</a>
+      </div>
+    </section>
+  </main>
+
+  <nav id="tabs" aria-label="Main navigation">
+    <a href="#home" data-tab="home">Home</a>
+    <a href="#services" data-tab="services">Services</a>
+    <a href="#order" data-tab="order">Order</a>
+    <a href="#orders" data-tab="orders">My orders</a>
+    <a href="#contact" data-tab="contact">Contact</a>
+  </nav>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="db.js"></script>
+  <script src="customer.js"></script>
+</body>
+</html>
